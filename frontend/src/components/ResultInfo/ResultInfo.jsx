@@ -1,5 +1,12 @@
 import React ,{useEffect, useState} from "react";
 import {useParams} from 'react-router-dom'
+import "./ResultInfo.css"
+import negative from "../../Assets/negative.png"
+import positive from "../../Assets/positive.png"
+import rankico from '../../Assets/rank.png'
+import nameico from '../../Assets/user.png'
+import total from '../../Assets/total.png'
+
 
 const ResultInfo = (props) =>{
     const [marks, setMarks] = useState("");
@@ -42,14 +49,36 @@ const ResultInfo = (props) =>{
       }, []);
 
     return(
+      <div className="resultinfowhole">
+
         <div className="resultinfo">
+          <div className="name box">
+            <img src={nameico} className="nameico"></img>
+            <h1>Name: {name}</h1>
+          </div>
+          <div className="marks box">
+            <img src={total} className="marksico"></img>
+           <h1>Marks: {marks}</h1>
+          </div>
         
-        <h1>Name: {name}</h1>
-        <h1>Marks: {marks}</h1>
-        <h1>Rank: {rank}</h1>
+        <div className="pmarks box">
+        <img src= {positive} className="positive"></img>
         <h1>Positive Marks: {pmarks}</h1>
-        <h1>Negative Marks: {nmarks}</h1>
         </div>
+        <div className="nmarks box">
+        <img src={negative} className="negative"></img>
+        <h1>Negative Marks: {nmarks}</h1>
+
+        </div>
+     
+        <div className="rank box">
+
+        <img src={rankico} className="rank" alt="" />
+        <h1>Rank: {rank}</h1>
+        </div>
+        </div>
+        <a href={`http://localhost:4000/generatecertificate/${name}`}><button>Certificate</button></a>
+      </div>
     )
 }
 

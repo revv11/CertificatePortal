@@ -1,4 +1,6 @@
 const readXlsxFile = require("read-excel-file/node")
+const puppeteer = require("puppeteer")
+const path = require('path')
 
 
 
@@ -37,6 +39,7 @@ module.exports.results_post = async (req,res)=>{
 
        const sheet_data = await readXlsxFile("./data/data.xlsx", {schema, sheet: 'Sheet1'})
        const data = sheet_data.rows
+       
        for(var i = 0 ; i<data.length; i++){
            
            if(data[i].email === email){
@@ -84,4 +87,43 @@ module.exports.resultDisplay_post = async (req,res)=>{
      res.status(400).json({error: err})
     }
     
+}
+
+module.exports.certificate_get = (req,res)=>{
+    res.render('certificate', {name: req.params.name})
+}
+//
+module.exports.generatecertificate = async (req,res) =>{
+    try{
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto(`${req.protocol}://${req.get('host')}`+`/certificate/${req.params.name}`,{
+            waitUntil: "networkidle2"
+        });
+        page.setViewport({width:1680, height:1050});
+        const date = new Date()
+        const pdf = await page.pdf({
+            path: `${path.join(__dirname, '../Public/files', date.getTime()+".pdf" )}`,
+            format:"A3"
+        });
+
+        await browser.close();
+
+        const pdfURL = path.join(__dirname, '../Public/files', date.getTime()+".pdf" )
+
+        // res.set({
+        //     "Content-Type": "application/pdf",
+        //     "Content-Length": pdf.length
+        // });
+        // res.sendFile(pdfURL);
+        res.download(pdfURL, function(err){
+            if (err){
+
+                console.log(err)
+            }
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
 }

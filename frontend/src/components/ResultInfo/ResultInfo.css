@@ -1,0 +1,39 @@
+.resultinfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 40px;
+    column-gap: 40px;
+    width: 75vh;
+}
+
+img{
+    height: 100px;
+}
+.box{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap:40px;
+}
+
+.resultinfowhole{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+button{
+    height :50px;
+    width: 80px;
+    border-radius: 20px;
+    outline: none;
+    border:none;
+    border : solid 1.2px silver;
+    font-weight: 600;
+
+}
+button:active{
+    background-color: rgb(163, 163, 230);
+}
