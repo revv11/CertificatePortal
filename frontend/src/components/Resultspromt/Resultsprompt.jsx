@@ -52,13 +52,13 @@ const Resultsprompt =  ()=>{
             <form method="POST">
 
             <div className="input-group">
-                <input type="text"  required onChange={(e)=>{setEmail(e.target.value)}}></input>
-                <label className="l1" htmlFor="">Email Address</label>
+                <input type="text" placeholder="Email Address"  required onChange={(e)=>{setEmail(e.target.value)}}></input>
+                
                 
             </div>
             <div className="input-group">
-                <input type = "name" required onChange={(e)=>{setName(e.target.value)}}></input>
-                <label className="l2">Name</label>
+                <input type = "name" placeholder="Name" required onChange={(e)=>{setName(e.target.value)}}></input>
+                
             </div>
             <p>{error}</p>
             <input className="btn" type="submit" onClick={submit}></input>

@@ -21,17 +21,7 @@
     margin: 20px 0px;
 }
 
-.input-group label{
-    
-    transform: translate(-50%);
-    font-size: 16px;
-    color: #fff;
-    padding: 0px 5px;
-    pointer-events: none;
-    transition: .5s;
-    top:21%
-    
-}
+
 .l1{
     position: absolute;
     right: 50%;
@@ -59,15 +49,7 @@
 }
 
 
-.input-group input:focus~label,
-.input-group input:valid~label
-{
-    top:-21%;
-    font-size: 12px;
-    background-color: transparent;
-    opacity: 0.9;
-    backdrop-filter: blur(20px)
-}
+
 
 .btn{
     background-color: transparent;
